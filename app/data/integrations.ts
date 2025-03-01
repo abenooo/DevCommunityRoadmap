@@ -94,6 +94,8 @@ const iconMap = {
   IoT: IoTIcon,
 }
 
+type IconMapKey = keyof typeof iconMap;
+
 const colorPalette = [
   "#FF4A00",
   "#96BF48",
@@ -364,7 +366,7 @@ function generateIntegrations(): Integration[] {
 
   Object.entries(techRoadmap).forEach(([category, technologies]) => {
     technologies.forEach((tech) => {
-      const iconKey = tech.name in iconMap ? tech.name : category.replace(" ", "")
+      const iconKey = (tech.name in iconMap ? tech.name : category.replace(" ", "")) as IconMapKey
       const icon = iconMap[iconKey] || iconMap.FullStack
       const color = colorPalette[Math.floor(Math.random() * colorPalette.length)]
 
